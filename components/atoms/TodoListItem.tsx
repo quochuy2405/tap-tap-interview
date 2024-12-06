@@ -5,9 +5,15 @@ import { deleteTodo, updateTodo } from "@/stores/slices/todoSlice";
 import { Todo } from "@/types/todo";
 import { yupResolver } from "@hookform/resolvers/yup";
 import dayjs from "dayjs";
-import React, { useMemo, useState } from "react";
+import React, { memo, useEffect, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Animated, {
+	useAnimatedStyle,
+	useDerivedValue,
+	useSharedValue,
+	withTiming,
+} from "react-native-reanimated";
 import { useDispatch } from "react-redux";
 import { DatePicker } from "./DatePicker";
 import { ErrorWrapper } from "./ErrorWrapper";
@@ -59,13 +65,27 @@ interface PreviewProps {
 	onEdit: () => void;
 }
 
-const Preview: React.FC<PreviewProps> = ({ priority, title, deadline, onEdit }) => {
+const Preview: React.FC<PreviewProps> = memo(({ priority, title, deadline, onEdit }) => {
+	const height = useSharedValue(30);
 	const remainingDays = useMemo(() => {
 		return dayjs(deadline).diff(dayjs(), "day");
 	}, [deadline]);
 
+	const derivedHeight = useDerivedValue(() =>
+		withTiming(height.value, {
+			duration: 500,
+		})
+	);
+	const bodyStyle = useAnimatedStyle(() => ({
+		height: derivedHeight.value,
+	}));
+
+	useEffect(() => {
+		height.value = 60;
+	}, []);
+
 	return (
-		<View style={styles.previewContainer}>
+		<Animated.View style={[styles.previewContainer, bodyStyle]}>
 			<View style={styles.topRow}>
 				<View style={styles.titleRow}>
 					<View style={styles.icon} />
@@ -81,9 +101,9 @@ const Preview: React.FC<PreviewProps> = ({ priority, title, deadline, onEdit }) 
 				</Text>
 				<Text style={styles.remainingDays}>Còn {remainingDays} ngày</Text>
 			</View>
-		</View>
+		</Animated.View>
 	);
-};
+});
 
 interface FormTodoProps {
 	priority: EPriority;
@@ -192,6 +212,7 @@ const styles = StyleSheet.create({
 	},
 	previewContainer: {
 		gap: 10,
+
 	},
 	topRow: {
 		flexDirection: "row",

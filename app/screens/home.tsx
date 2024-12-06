@@ -2,7 +2,8 @@ import { AddTodo } from "@/components/atoms";
 import { TodoList } from "@/components/molecules";
 import { Header } from "@/components/organisms";
 import { Colors } from "@/constants/Colors";
-import React from "react";
+import React, { useRef } from "react";
+import { FlatList } from "react-native";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 
 const Home = () => {

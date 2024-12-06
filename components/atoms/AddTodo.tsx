@@ -7,7 +7,8 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
-export const AddTodo = () => {
+interface AddTodoProps {}
+export const AddTodo: React.FC<AddTodoProps> = ({}) => {
 	const todoList = useSelector((state: RootState) => state.todos.todos);
 	const dispatch = useDispatch();
 

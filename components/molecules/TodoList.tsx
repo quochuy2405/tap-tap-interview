@@ -1,9 +1,10 @@
 import { RootState } from "@/stores";
-import React, { useMemo } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import React, { useEffect, useMemo, useRef } from "react";
+import { FlatList, StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
 import { TodoListItem } from "../atoms";
 import { EPriority } from "@/constants/Enum";
+import Animated, { LinearTransition } from "react-native-reanimated";
 
 const priorityOrder = {
 	[EPriority.HIGH]: 0,
@@ -11,21 +12,34 @@ const priorityOrder = {
 	[EPriority.LOW]: 2,
 };
 
-export const TodoList = () => {
-	const todos = useSelector((state: RootState) => state.todos.todos);
+interface TodoListProps {}
 
-	const sortedTodos = useMemo(
-		() => [...todos].sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]),
-		[todos]
-	);
+export const TodoList: React.FC<TodoListProps> = ({}) => {
+	const todos = useSelector((state: RootState) => state.todos.todos);
+	const flatListRef = useRef<FlatList | null>(null);
+
+	const sortedTodos = useMemo(() => {
+		return [...todos].sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
+	}, [todos]);
+
+	useEffect(() => {
+		if (flatListRef.current && todos.length > 0) {
+			setTimeout(() => {
+				flatListRef.current?.scrollToEnd({ animated: true });
+			}, 200);
+		}
+	}, [todos.length]);
 
 	return (
-		<FlatList
+		<Animated.FlatList
 			style={styles.list}
 			data={sortedTodos}
+			ref={(ref) => (flatListRef.current = ref)}
 			showsVerticalScrollIndicator={false}
 			keyExtractor={(item) => item.id.toString()} // Ensure key is a string
 			renderItem={({ item }) => <TodoListItem {...item} />}
+			itemLayoutAnimation={LinearTransition}
+			ListFooterComponent={<View style={{ height: 100 }}></View>}
 		/>
 	);
 };
@@ -35,5 +49,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexGrow: 1,
 		backgroundColor: "#F7CC15",
+
 	},
 });
