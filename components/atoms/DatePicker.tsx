@@ -1,7 +1,7 @@
 import { Colors } from "@/constants/Colors";
 import dayjs from "dayjs";
 import React, { useState } from "react";
-import { StyleSheet, TextInput, TouchableOpacity, View, Text, Platform } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 interface DatePicker {
