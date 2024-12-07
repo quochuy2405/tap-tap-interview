@@ -1,6 +1,6 @@
-# Tap Tao To-Do App
+# TapTap To-Do App
 
-Welcome to the To-Do App project! This project is built using **React Native**, **Redux Toolkit**, and **TypeScript**, as part of a coding test for the company Tap Tao. Below are the instructions and information required to run and evaluate the app.
+Welcome to the To-Do App project! This project is built using **React Native**, **Redux Toolkit**, and **TypeScript**, as part of a coding test for the company TapTap. Below are the instructions and information required to run and evaluate the app.
 
 ## 1. Project Overview
 
