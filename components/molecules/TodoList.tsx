@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { TodoListItem } from "../atoms";
 import { EPriority } from "@/constants/Enum";
 import Animated, { LinearTransition } from "react-native-reanimated";
+import { Colors } from "@/constants/Colors";
 
 const priorityOrder = {
 	[EPriority.HIGH]: 0,
@@ -48,7 +49,6 @@ const styles = StyleSheet.create({
 	list: {
 		flex: 1,
 		flexGrow: 1,
-		backgroundColor: "#F7CC15",
-
+		backgroundColor: Colors.background,
 	},
 });

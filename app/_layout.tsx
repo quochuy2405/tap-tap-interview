@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import store from "@/stores";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		flexGrow: 1,
-		backgroundColor: "#F7CC15",
+		backgroundColor: Colors.background,
 		paddingHorizontal: 16,
 	},
 });

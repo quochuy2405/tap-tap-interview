@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -43,8 +44,8 @@ const styles = StyleSheet.create({
 	container: {
 		height: 54,
 		borderBottomWidth: 1,
-		borderColor: "#DADADA",
-		color: "black",
+		borderColor: Colors.borderColor,
+		color: Colors.text,
 		fontSize: 20,
 		fontWeight: "700",
 		flexDirection: "row",
@@ -54,18 +55,18 @@ const styles = StyleSheet.create({
 	label: {
 		fontSize: 20,
 		fontWeight: "700",
-		color: "#000",
+		color: Colors.text,
 		flex: 1,
 	},
 	input: {
 		height: 54,
 		justifyContent: "center",
 		borderBottomWidth: 1,
-		borderColor: "#DADADA",
+		borderColor: Colors.borderColor,
 	},
 	dateText: {
 		fontSize: 14,
 		fontWeight: "500",
-		color: "#000",
+		color: Colors.text,
 	},
 });

@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import React, { useState } from "react";
 import { StyleSheet, TextInput, TextInputProps } from "react-native";
 
@@ -11,7 +12,7 @@ export const InputField: React.FC<InputFieldProps> = ({ onChange, ...props }) =>
 		<TextInput
 			style={[
 				styles.container,
-				{ borderColor: isFocused ? "black" : "#DADADA" }, // Change border color
+				{ borderColor: isFocused ? "black" : Colors.borderColor }, // Change border color
 			]}
 			onFocus={() => setIsFocused(true)} // Set focus state
 			onBlur={() => setIsFocused(false)} // Reset focus state
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
 	container: {
 		height: 54,
 		borderBottomWidth: 1,
-		color: "black",
+		color: Colors.text,
 		fontSize: 20,
 		fontWeight: "700",
 	},

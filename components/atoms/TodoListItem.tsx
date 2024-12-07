@@ -19,6 +19,7 @@ import { DatePicker } from "./DatePicker";
 import { ErrorWrapper } from "./ErrorWrapper";
 import { InputField } from "./InputField";
 import { Select } from "./Select";
+import { Colors } from "@/constants/Colors";
 
 interface TodoListItemProps extends Todo {}
 
@@ -202,7 +203,7 @@ const styles = StyleSheet.create({
 		padding: 30,
 		marginVertical: 8,
 		marginTop: 24,
-		backgroundColor: "#fff",
+		backgroundColor: Colors.white,
 		borderRadius: 15,
 		shadowColor: "#000",
 		shadowOpacity: 0.1,
@@ -212,7 +213,6 @@ const styles = StyleSheet.create({
 	},
 	previewContainer: {
 		gap: 10,
-
 	},
 	topRow: {
 		flexDirection: "row",
@@ -233,6 +233,7 @@ const styles = StyleSheet.create({
 	taskTitle: {
 		fontSize: 16,
 		fontWeight: "bold",
+		color: Colors.text,
 	},
 	bottomRow: {
 		flexDirection: "row",
@@ -246,7 +247,7 @@ const styles = StyleSheet.create({
 	remainingDays: {
 		marginTop: 4,
 		fontSize: 12,
-		color: "#000000",
+		color: Colors.text,
 	},
 	formContainer: {
 		justifyContent: "space-between",
@@ -275,6 +276,6 @@ const styles = StyleSheet.create({
 		margin: "auto",
 	},
 	submitButtonText: {
-		color: "white",
+		color: Colors.white,
 	},
 });
